@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+sudo apt install powertop
+
+mkdir -p /home/andy/bin
+
+cat << EOF | tee ~/bin/powertop
+#!/usr/bin/env bash
+powertop --auto-tune
+echo 'on' > '/sys/bus/usb/devices/1-8/power/control';
+EOF
+
+chmod +x ~/bin/powertop
+
+cat << EOF | sudo tee /etc/systemd/system/powertop.service
+[Unit]
+Description=PowerTOP auto tune
+
+[Service]
+Type=idle
+Environment="TERM=dumb"
+ExecStart=/home/andy/bin/powertop
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable powertop.service

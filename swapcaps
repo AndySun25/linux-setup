@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Add as startup application
+
+mkdir -p ~/bin
+
+cat << EOF | tee ~/bin/swapcaps
+remote_ids=$(
+    xinput list | sed -n 's/.*Razer Blade\s*id=\([0-9]*\).*keyboard.*/\1/p'
+)
+[ "$remote_ids" ] || exit
+
+for remote_id in $remote_ids
+do
+	setxkbmap -device $remote_id -option ctrl:swapcaps
+done
+EOF
+
+chmod +x ~/bin/swapcaps
+
+cat << EOF | tee ~/.config/autostart/swapcaps.desktop
+[Desktop Entry]
+Type=Application
+Exec=/home/andy/bin/swapcaps
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=swapcaps
+Name=swapcaps
+EOF

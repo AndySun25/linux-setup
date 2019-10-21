@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+sudo add-apt-repository ppa:openrazer/stable
+sudo add-apt-repository ppa:polychromatic/stable
+
+sudo apt update
+sudo apt install openrazer-meta polychromatic
+
+sudo gpasswd -a $USER plugdev
+
+# If you want keyboard backlights to be enabled when resuming from suspend
+# be sure to disable devices_off_on_screensaver in ~/.config/openrazer/razer.conf

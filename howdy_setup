@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Release download url is hardcoded for now, replace it with automatically
+# fetching latest release when possible.
+
+wget https://github.com/boltgolt/howdy/releases/download/v2.5.1/howdy_2.5.1.deb
+sudo dpkg --install howdy_2.5.1.deb
+rm howdy_2.5.1.deb
+
+# You should still test this stuff, for Razer devices with Windows Hello support
+# the camera settings need to be manually tweaked so that resolution is fixed
+# at 360x360, config is editable by `sudo howdy config`.

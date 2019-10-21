@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Basic tools
+sudo apt install git gparted guake dtrx
+
+# Power related stuff
+sudo apt install tlp
+
+# I like to put certain custom executables here, sue me.
+mkdir -p ~/bin
+
+# To add to path, edit ~/.profile with `export PATH=$PATH:/home/$USER/bin`

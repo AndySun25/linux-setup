@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+sudo gpasswd -a $USER input
+sudo apt-get install libinput-tools ruby xdotool
+sudo gem install fusuma
+mkdir -p ~/.config/fusuma
+
+cat << EOF | sudo tee ~/.config/fusuma/config.yml
+swipe:
+  3:
+    left:
+      command: 'xdotool key alt+Right'
+    right:
+      command: 'xdotool key alt+Left'
+    up:
+      command: 'xdotool key XF86AudioRaiseVolume'
+      threshold: 0.1
+      interval: 0.5
+    down:
+      command: 'xdotool key XF86AudioLowerVolume'
+      threshold: 0.1
+      interval: 0.5
+  4:
+    left:
+      command: 'xdotool key super+Left'
+    right:
+      command: 'xdotool key super+Right'
+    up:
+      command: 'xdotool key super+Up'
+    down:
+      command: 'xdotool key super+Down'
+
+threshold:
+  swipe: 1
+  pinch: 1
+
+interval:
+  swipe: 1
+  pinch: 1
+EOF
+
+mkdir -p ~/.config/autostart/
+cat << EOF | sudo tee ~/.config/autostart/fusuma.desktop
+[Desktop Entry]
+Type=Application
+Exec=fusuma -d
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=fusuma
+Name=fusuma
+Comment[en_US]=fusuma
+Comment=fusuma
+EOF
