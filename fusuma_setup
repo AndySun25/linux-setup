@@ -5,7 +5,7 @@ sudo apt-get install libinput-tools ruby xdotool
 sudo gem install fusuma
 mkdir -p ~/.config/fusuma
 
-cat << EOF | sudo tee ~/.config/fusuma/config.yml
+cat << EOF | tee ~/.config/fusuma/config.yml
 swipe:
   3:
     left:
@@ -40,7 +40,7 @@ interval:
 EOF
 
 mkdir -p ~/.config/autostart/
-cat << EOF | sudo tee ~/.config/autostart/fusuma.desktop
+cat << EOF | tee ~/.config/autostart/fusuma.desktop
 [Desktop Entry]
 Type=Application
 Exec=fusuma -d
