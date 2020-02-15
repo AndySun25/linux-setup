@@ -6,29 +6,38 @@ sudo gem install fusuma
 mkdir -p ~/.config/fusuma
 
 cat << EOF | tee ~/.config/fusuma/config.yml
+# Not using xdotool for now since it lags like all hell when non-default kb layout is selected.
 swipe:
   3:
     left:
-      command: 'xdotool key alt+Right'
+      # command: 'xdotool key alt+Right'
+      command: 'xte "keydown Alt_L" "key Right" "keyup Alt_L"'
     right:
-      command: 'xdotool key alt+Left'
+      # command: 'xdotool key alt+Left'
+      command: 'xte "keydown Alt_L" "key Left" "keyup Alt_L"'
     up:
-      command: 'xdotool key XF86AudioRaiseVolume'
+      # command: 'xdotool key XF86AudioRaiseVolume'
+      command: 'xte "key XF86AudioRaiseVolume"'
       threshold: 0.1
       interval: 0.5
     down:
-      command: 'xdotool key XF86AudioLowerVolume'
+      #command: 'xdotool key XF86AudioLowerVolume'
+      command: 'xte "key XF86AudioLowerVolume"'
       threshold: 0.1
       interval: 0.5
   4:
     left:
-      command: 'xdotool key super+Left'
+      # command: 'xdotool key super+Left'
+      command: 'xte "keydown Super_L" "key Left" "keyup Super_L"'
     right:
-      command: 'xdotool key super+Right'
+      # command: 'xdotool key super+Right'
+      command: 'xte "keydown Super_L" "key Right" "keyup Super_L"'
     up:
-      command: 'xdotool key super+Up'
+      # command: 'xdotool key super+Up'
+      command: 'xte "keydown Super_L" "key Up" "keyup Super_L"'
     down:
-      command: 'xdotool key super+Down'
+      # command: 'xdotool key super+Down'
+      command: 'xte "keydown Super_L" "key Down" "keyup Super_L"'
 
 threshold:
   swipe: 1
